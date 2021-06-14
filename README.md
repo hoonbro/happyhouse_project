@@ -40,9 +40,10 @@
     - 페이징 처리
     - column 클릭시 정렬 기능
     
-> 지역별 리스트
+* 지역별 리스트
+> 관심지역 등록 기능
 ![지역별 리스트](https://user-images.githubusercontent.com/66583397/121895939-bd810780-cd5b-11eb-9aca-fc47488d26a8.JPG)
-> 매물별 리스트
+* 매물별 리스트
 ![매물별 리스트](https://user-images.githubusercontent.com/66583397/121896058-d984a900-cd5b-11eb-9d6c-e56f4cb7f768.JPG)
 
 
