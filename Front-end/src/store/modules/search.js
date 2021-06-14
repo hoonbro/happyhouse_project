@@ -121,8 +121,8 @@ const actions = {
           apts[i] = {
             아파트명: data[i].name,
             동: data[i].dong,
-            건설일: data[i].buildYear,
-            거래일: data[i].dealYear,
+            건설년도: data[i].buildYear,
+            거래년도: data[i].dealYear,
             "거래금액(만원)": data[i].dealAmount
               .toString()
               .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","),
@@ -162,8 +162,8 @@ const actions = {
           apts[i] = {
             아파트명: data[i].name,
             동: payload[2],
-            건설일: data[i].buildYear,
-            거래일: data[i].dealYear,
+            건설년도: data[i].buildYear,
+            거래년도: data[i].dealYear,
             "거래금액(만원)": data[i].dealAmount
               .toString()
               .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","),

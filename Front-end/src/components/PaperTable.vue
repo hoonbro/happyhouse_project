@@ -48,15 +48,15 @@ export default {
         },
         {
           key: "분류",
-          sortable: false
-        },
-        {
-          key: "건설일",
           sortable: true
         },
         {
-          key: "거래일",
-          sortable: false
+          key: "건설년도",
+          sortable: true
+        },
+        {
+          key: "거래년도",
+          sortable: true
         }
       ]
     };

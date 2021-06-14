@@ -17,7 +17,7 @@
         
         <div class="col-md-3">
           <fg-input id ="upassword"
-            type="text"
+            type="password"
             label="UserPassword"
             :disabled="true"
             placeholder="User password"

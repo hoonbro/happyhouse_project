@@ -3,6 +3,7 @@
     <b-table
       class="text-center"
       striped
+      hover
       fixed
       id="my-table"
       :items="bookList"
@@ -11,11 +12,11 @@
       :current-page="currentPage"
       @row-clicked="clickRow"
     >
-    <template #cell(delete)="row">
-      <b-button  size="sm" @click="clickDelete(row.value)" class="mr-2">
-        삭제
-      </b-button>
-    </template>
+      <template #cell(delete)="row">
+        <b-button size="sm" @click="clickDelete(row.value)" class="mr-2">
+          삭제
+        </b-button>
+      </template>
     </b-table>
     <b-pagination
       align="center"
@@ -53,7 +54,7 @@ export default {
     }
   },
   computed: {
-    ...mapState("user", ["user","bookList"]),
+    ...mapState("user", ["user", "bookList"]),
     tableClass() {
       return `table-${this.type}`;
     },
@@ -62,7 +63,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions("user", ["deleteBook","getBookList"]),
+    ...mapActions("user", ["deleteBook", "getBookList"]),
     ...mapActions("search", ["dongSearch"]),
     hasValue(item, column) {
       return item[column.toLowerCase()] !== "undefined";
@@ -70,12 +71,12 @@ export default {
     itemValue(item, column) {
       return item[column.toLowerCase()];
     },
-    clickDelete(no){
-      this.deleteBook([this.user.userid,no]);
+    clickDelete(no) {
+      this.deleteBook([this.user.userid, no]);
       this.deletecheck = !this.deletecheck;
     },
-    clickRow(record, index){
-      this.dongSearch([record.도광역시,record.시구군,record.동]);
+    clickRow(record, index) {
+      this.dongSearch([record.도광역시, record.시구군, record.동]);
     }
   }
 };
