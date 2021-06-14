@@ -35,31 +35,31 @@
 <br>
 
 #### 3. 매물 리스트 화면
-    - 지역별 리스트
-    - 매물명별 리스트
+    - 매물명 및 지역별 리스트
     - 페이징 처리
     - column 클릭시 정렬 기능
     
-* 지역별 리스트
+##### 1) 지역별 리스트
     - 관심지역 등록 기능
 ![지역별 리스트](https://user-images.githubusercontent.com/66583397/121895939-bd810780-cd5b-11eb-9aca-fc47488d26a8.JPG)
 
-
-* 매물별 리스트
+##### 2) 매물별 리스트
 ![매물별 리스트](https://user-images.githubusercontent.com/66583397/121896058-d984a900-cd5b-11eb-9d6c-e56f4cb7f768.JPG)
-
-
 
 <br>
 
-#### 4. 게시판
-    - 게시판 CRUD 기능
-    - 키워드별 검색, 페이징 처리
-    - 게시판 글 상세 조회
-    - 조회수 계산
-    - 로그인한 계정이 글 작성자면 글 수정, 삭제 가능
-![게시판 CRUD](https://user-images.githubusercontent.com/62068895/121524751-97452a00-ca32-11eb-9915-e7059d2a9fc9.PNG)
-![게시판 글 상세](https://user-images.githubusercontent.com/62068895/121524827-a926cd00-ca32-11eb-8091-a468320f44b9.PNG)
+#### 4. chart dashboard 화면
+    - 매물명 및 지역별 차트
+    - 총거래량, 평균 매매가격, 매매 최고가, 매매최저가 표시
+    - 1억 ~ 20억 사이의 거래가격 분포 차트
+    - 매매타입, 음식지수, 월별 거래량 차트
+    
+##### 1) 지역별 리스트
+![지역별 차트](https://user-images.githubusercontent.com/66583397/121896863-bad2e200-cd5c-11eb-9420-15778a22dfb8.JPG)
+
+##### 2) 매물별 리스트
+    - 매물이 가장 많은 지역의 
+![매물별 차트](https://user-images.githubusercontent.com/66583397/121896842-b60e2e00-cd5c-11eb-8537-656850638bdd.JPG)
 
 <br>
 
