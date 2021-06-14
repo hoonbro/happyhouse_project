@@ -5,9 +5,9 @@
 
 ## Tech Stack
 ### Frontend
-    Vue
+    Vue.js
 ### Backend
-    Spring
+    Spring boot, RestAPI
 ### Database
     MySQL
 
