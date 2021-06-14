@@ -12,7 +12,7 @@
 ### Frontend
     Vue.js
 ### Backend
-    Spring boot, RestAPI
+    Spring Boot&MyBatis Framework, RestAPI
 ### Database
     MySQL
 
