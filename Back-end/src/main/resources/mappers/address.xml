@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.happyhouse.model.mapper.AddressDao">
+	<select id="getCity" resultType="String">
+		select sido_name from sidocode;
+	</select>
+	<select id="getGugun" parameterType="String" resultType="String">
+		select distinct gugun from baseaddress where city = #{city}
+	</select>
+	<select id="getDong" parameterType="Address" resultType="String">
+		select distinct dong from baseaddress 
+		where city = #{city} and gugun = #{gugun}
+	</select>
+	<select id= "getLatLng" parameterType="String" resultType = "address">
+		select lat, lng
+		from baseaddress
+		where dong=#{dong}
+	</select>
+	<select id="getMaxArea" parameterType="String" resultType="Address">
+		select b.city city, b.gugun gugun, b.dong dong
+		from houseinfo h join baseaddress b
+		on h.dong = b.dong
+		where AptName like concat('%',#{searchInput},'%')
+		group by dong
+		order by count(AptName) desc
+		limit 1
+	</select>
+</mapper>
