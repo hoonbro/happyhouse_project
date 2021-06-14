@@ -1,8 +1,24 @@
-필수
-회원정보(로그인 로그아웃, 정보수정)
-아파트별 검색
-동검색
+# happyhouse_vue
 
-추가기능
-거래 현황(파란색 - 전체 거래 현황, 동별거래현황)
-동그라미(유형, 매매, 월,  다세대등등)
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
