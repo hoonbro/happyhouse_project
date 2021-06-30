@@ -6,11 +6,9 @@ import java.util.Map;
 import com.ssafy.happyhouse.model.Address;
 
 public interface AddressService {
-	public List<String> getCity();
-	public List<String> getGugun(String city);
-	public List<String> getDong(Address address);
+	public List<String> getSido();
+	public List<Address> searchGugun(String sido);
+	public List<Address> searchDong(String gugun);
 	public Address centerMark(Map<String, String> map);
-	public Address getLatLng(String dong);
-	public Address getMaxArea(String searchInput);
 //	public List<Address> getbooklist(String userId)throws SQLException;
 }

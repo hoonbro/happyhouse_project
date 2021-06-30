@@ -1,116 +1,154 @@
 package com.ssafy.happyhouse.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ssafy.happyhouse.model.Address;
+import com.ssafy.happyhouse.model.Board;
 import com.ssafy.happyhouse.model.Book;
 import com.ssafy.happyhouse.model.Member;
 import com.ssafy.happyhouse.model.service.MemberService;
 
-
-@RestController
+@Controller
 @RequestMapping("/member")
-@CrossOrigin("*")
 public class MemberController {
 	
-	@Autowired
-	MemberService memberService;
-	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+	
+	@Autowired
+	private MemberService memberService;
 
-	
-	@PostMapping(value = "/login")
-	public ResponseEntity<Member> login(@RequestBody Member member, Model model, HttpSession session) {
-		System.out.println(member.getUserid());
-		System.out.println(member.getUserpwd());
-		
-		
-		Member m = memberService.login(member);
-		System.out.println(m.getUserid());
-		
-		if(m != null) {
-			System.out.println("로그인!!!!!");
-			return new ResponseEntity<Member>(m, HttpStatus.OK);
-		}else
-			return new ResponseEntity(HttpStatus.NO_CONTENT);
-	}
-	@PostMapping(value = "/register")
-	public void registerMember(@RequestBody Member member, Model model, HttpSession session) {
-		System.out.println(member.getUserid());
-		System.out.println(member.getUserpwd());
-		System.out.println(member.getUsername());
-		System.out.println(member.getEmail());
-		System.out.println(member.getAddress());
-		
-		
-		memberService.registerMember(member);
-		System.out.println("등록?");
-		
-	}
-	@PutMapping(value = "/modify")
-	public void modifyMember(@RequestBody Member member, Model model, HttpSession session) {
-		System.out.println("회원정보수정");
-		memberService.modifyMember(member);
-		System.out.println(member.toString());
-//		return new ResponseEntity<Member>(member, HttpStatus.OK);
-		
-	}
-	
-	@PostMapping(value = "/delete")
-	public void deleteMember(@RequestBody Member member) {
-		System.out.println("회원탈퇴 전 관심목록 삭제");
-		memberService.deleteBookList(member.getUserid());
-		System.out.println("관심목록 삭제 후 탈퇴 시작!!");
-		memberService.deleteMember(member.getUserid());
-	}
-	
-//	관심목록 축가하기
-	@PostMapping("/newBooking")
-	public void booking(@RequestBody Book book) {
-		System.out.println("관심지역등록 하자~~");
-		System.out.println(book.toString());
-		memberService.newBooking(book);
-	}
-	
-	
-//	관심지역 목록 받아오기
-	@GetMapping(value = "/booklist/{userid}")
-	public ResponseEntity<List<Address>> bookList(@PathVariable String userid) {
-		System.out.println(userid);
-		
-		List<Address> bookList = memberService.bookList(userid);
-		System.out.println(bookList.size());
-		
-		if(bookList != null) {
-			System.out.println("관심목록불러오기");
-			return new ResponseEntity<List<Address>>(bookList, HttpStatus.OK);
-		}else
-			return new ResponseEntity(HttpStatus.NO_CONTENT);
-	}
-	
-	
-
-//	관심지역 삭제
-	@PostMapping("/deleteBook")
-	public void bookdelete(@RequestBody Book book) {
-			memberService.deleteBook(book);
+//	@GetMapping("/delete")
+//	public String delete(Model model, HttpSession session) {
+//		Member member = (Member) session.getAttribute("userinfo");
+//		try {
+//			memberService.deleteMember(member.getUserId());
+//			session.invalidate();
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//			model.addAttribute("msg", "회원 삭제 실패.");
+//		}
+//		
+//		return "index";
+//	}
+	@GetMapping("/deleteBook")
+	public String bookdelete(@RequestParam int no, Model model, HttpSession session) {
+		System.out.println("관심지역 삭제 확인");
+		Member member = (Member) session.getAttribute("userinfo");
+		try {
+			String userid = member.getUserId();
+			System.out.println(userid +" "+ no);
+			memberService.deleteBook(new Book(userid, no));
 			System.out.println("삭제완료");
+			List<Address> list = memberService.bookList(member.getUserId());
+			session.setAttribute("booklist", list);
+
+		}catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", "관심지역 삭제 중 문제가 발생했습니다.");
+		}
+		
+		return "index";
 	}
+	@PostMapping("/booking")
+	public String booking(@RequestParam Map<String, String> map, Model model, HttpSession session) {
+		System.out.println("관심지역 확인");
+		Member member = (Member) session.getAttribute("userinfo");
+		try {
+			map.put("userid", member.getUserId());
+			memberService.newBooking(map);
+			List<Address> list = memberService.bookList(member.getUserId());
+			session.setAttribute("booklist", list);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", "관심지역 등록 중 문제가 발생했습니다.");
+		}
+		
+		return "index";
+	}
+
+	@PostMapping("/login")
+	public String login(@RequestParam Map<String, String> map, Model model, HttpSession session) {
+		try {
+			Member member = memberService.login(map);
+			List<Address> list = memberService.bookList(member.getUserId());
+			if(member != null) {
+				session.setAttribute("userinfo", member);
+				session.setAttribute("booklist", list);
+			}
+			else {
+				model.addAttribute("msg", "아이디와 비밀번호를 확인하세요.");
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", "로그인 중 문제가 발생했습니다.");
+		}
+		return "index";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "index";
+	}
+	
+	@PostMapping("/modify")
+	public String modify(@RequestParam Map<String, String> map, Model model, HttpSession session) {
+		try {
+			memberService.modifyMember(map);
+			Member member = memberService.getMember(map.get("info_id"));
+			session.setAttribute("userinfo", member);
+			model.addAttribute("msg", "회원정보 수정 성공.");
+		}catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", "회원정보 수정중 문제가 발생했습니다.");
+		}
+		return "index";
+	}
+	
+	@GetMapping("/delete")
+	public String delete(Model model, HttpSession session) {
+		Member member = (Member) session.getAttribute("userinfo");
+		try {
+			memberService.deleteMember(member.getUserId());
+			session.invalidate();
+		}catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", "회원 삭제 실패.");
+		}
+		
+		return "index";
+	}
+	
+	@GetMapping("/register")
+	public String register() {
+		return "signUp";
+	}
+	
+	@PostMapping("/register")
+	public String register(Member member, Model model) {
+		try {
+			memberService.registerMember(member);
+			model.addAttribute("msg", "회원가입 성공");
+		}catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("msg", "회원가입 실패");
+			return "signUp";
+		}
+		return "index";
+	}
+	
 }

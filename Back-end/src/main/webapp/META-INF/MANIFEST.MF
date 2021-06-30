@@ -1,6 +1,5 @@
 Manifest-Version: 1.0
-Implementation-Title: happyhouseFinal
-Implementation-Version: 0.0.1-SNAPSHOT
-Build-Jdk-Spec: 1.8
+Built-By: ￫ﾳﾀ￬ﾧﾀ￭ﾛﾈ
+Build-Jdk: 1.8.0_192
 Created-By: Maven Integration for Eclipse
 

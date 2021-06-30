@@ -11,38 +11,37 @@ import com.ssafy.happyhouse.model.Address;
 import com.ssafy.happyhouse.model.mapper.AddressDao;
 
 @Service
-public class AddressServiceImpl implements AddressService{
+public class AddressServiceImpl implements AddressService {
 
 	@Autowired
-	SqlSession sqlSession;
+	private SqlSession sqlSession;
+	
 	@Override
-	public List<String> getCity() {
-		return sqlSession.getMapper(AddressDao.class).getCity();
+	public List<String> getSido() {
+		return sqlSession.getMapper(AddressDao.class).getSido();
+	}
+	
+	@Override
+	public List<Address> searchGugun(String sido) {
+		return sqlSession.getMapper(AddressDao.class).searchGugun(sido);
 	}
 
 	@Override
-	public List<String> getGugun(String city){
-		return sqlSession.getMapper(AddressDao.class).getGugun(city);
-	}
-
-	@Override
-	public List<String> getDong(Address address) {
-		return sqlSession.getMapper(AddressDao.class).getDong(address);
+	public List<Address> searchDong(String gugun){
+		return sqlSession.getMapper(AddressDao.class).searchDong(gugun);
 	}
 
 	@Override
 	public Address centerMark(Map<String, String> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.getMapper(AddressDao.class).centerMark(map);
 	}
 
-	@Override
-	public Address getLatLng(String dong) {
-		return sqlSession.getMapper(AddressDao.class).getLatLng(dong);
-	}
+//	@Override
+//	public List<Address> getbooklist(String userId) throws SQLException {
+//		List<Address> list = null;
+//		AddressDao dao = AddressDaoImpl.getAddressService();
+//		list = dao.getBooklist(userId);
+//		return list;
+//	}
 
-	@Override
-	public Address getMaxArea(String searchInput) {
-		return sqlSession.getMapper(AddressDao.class).getMaxArea(searchInput);
-	}
 }
