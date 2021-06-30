@@ -241,7 +241,9 @@ const actions = {
   aptTotal({ commit }, payload) {
     if (payload[2] == "dong") payload[0] = payload[1];
     axios
-      .get("http://localhost/house/aptTotal/" + payload[2] + "/" + payload[0])
+      .get(
+        "http://localhost/api/house/aptTotal/" + payload[2] + "/" + payload[0]
+      )
       .then(({ data }) => {
         commit("setAptTotal", data);
       })
@@ -253,7 +255,9 @@ const actions = {
   avgAmount({ commit }, payload) {
     if (payload[2] == "dong") payload[0] = payload[1];
     axios
-      .get("http://localhost/house/avgAmount/" + payload[2] + "/" + payload[0])
+      .get(
+        "http://localhost/api/house/avgAmount/" + payload[2] + "/" + payload[0]
+      )
       .then(data => {
         commit("setAvgAmount", data.data);
       })
@@ -265,7 +269,9 @@ const actions = {
   typeTotal({ commit }, payload) {
     if (payload[2] == "dong") payload[0] = payload[1];
     axios
-      .get("http://localhost/house/typeTotal/" + payload[2] + "/" + payload[0])
+      .get(
+        "http://localhost/api/house/typeTotal/" + payload[2] + "/" + payload[0]
+      )
       .then(({ data }) => {
         commit("setTypeTotal", data);
         commit("setTemp");
@@ -276,7 +282,7 @@ const actions = {
   },
   commerceTotal({ commit }) {
     axios
-      .get("http://localhost/house/commerceTotal")
+      .get("http://localhost/api/house/commerceTotal")
       .then(({ data }) => {
         commit("setCommerceTotal", data);
       })
@@ -288,7 +294,10 @@ const actions = {
     if (payload[2] == "dong") payload[0] = payload[1];
     axios
       .get(
-        "http://localhost/house/commerceDong/" + payload[2] + "/" + payload[0]
+        "http://localhost/api/house/commerceDong/" +
+          payload[2] +
+          "/" +
+          payload[0]
       )
       .then(({ data }) => {
         let com = [0, 0, 0, 0];
@@ -306,7 +315,7 @@ const actions = {
   },
   priceTotal({ commit }) {
     axios
-      .get("http://localhost/house/priceTotal")
+      .get("http://localhost/api/house/priceTotal")
       .then(({ data }) => {
         let prices = [];
         var max = 0;
@@ -324,7 +333,7 @@ const actions = {
     if (payload[2] == "dong") payload[0] = payload[1];
     axios
       .get(
-        "http://localhost/house/priceGugun/" +
+        "http://localhost/api/house/priceGugun/" +
           payload[2] +
           "/" +
           payload[1] +
@@ -349,7 +358,7 @@ const actions = {
     if (payload[2] == "dong") payload[0] = payload[1];
     axios
       .get(
-        "http://localhost/house/priceDong/" +
+        "http://localhost/api/house/priceDong/" +
           payload[2] +
           "/" +
           payload[1] +
@@ -377,7 +386,7 @@ const actions = {
   },
   monthlyTotal({ commit }) {
     axios
-      .get("http://localhost/house/monthlyTotal")
+      .get("http://localhost/api/house/monthlyTotal")
       .then(({ data }) => {
         let amounts = [];
         var max = 0;
@@ -394,7 +403,9 @@ const actions = {
   monthly({ commit }, payload) {
     if (payload[2] == "dong") payload[0] = payload[1];
     axios
-      .get("http://localhost/house/monthly/" + payload[2] + "/" + payload[0])
+      .get(
+        "http://localhost/api/house/monthly/" + payload[2] + "/" + payload[0]
+      )
       .then(({ data }) => {
         let amounts = [];
         var max = 0;

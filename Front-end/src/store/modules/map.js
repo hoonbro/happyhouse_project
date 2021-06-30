@@ -62,7 +62,9 @@ const actions = {
   getMarks({ commit }, payload) {
     if (payload[2] == "dong") payload[0] = payload[1];
     axios
-      .get("http://localhost/house/makeMark/" + payload[2] + "/" + payload[0])
+      .get(
+        "http://localhost/api/house/makeMark/" + payload[2] + "/" + payload[0]
+      )
       .then(({ data }) => {
         commit("setMarks", data);
       })

@@ -75,7 +75,7 @@ const mutations = {
 const actions = {
   getCitys({ commit }) {
     axios
-      .get("http://localhost/addr/getCity")
+      .get("http://localhost/api/addr/getCity")
       .then(({ data }) => {
         commit("getCitySuccess", data);
       })
@@ -85,7 +85,7 @@ const actions = {
   },
   getGuguns({ commit }, payload) {
     axios
-      .get("http://localhost/addr/getGugun/" + payload)
+      .get("http://localhost/api/addr/getGugun/" + payload)
       .then(({ data }) => {
         commit("getGugunSuccess", data);
       })
@@ -95,7 +95,7 @@ const actions = {
   },
   getDongs({ commit }, payload) {
     axios
-      .post("http://localhost/addr/getDong", {
+      .post("http://localhost/api/addr/getDong", {
         city: payload[0],
         gugun: payload[1]
       })
@@ -113,7 +113,7 @@ const actions = {
     }
     commit("setApt", payload);
     axios
-      .get("http://localhost/house/aptSearch/" + payload)
+      .get("http://localhost/api/house/aptSearch/" + payload)
       .then(({ data }) => {
         let apts = [];
 
@@ -151,7 +151,7 @@ const actions = {
     }
     commit("setArea", payload);
     axios
-      .post("http://localhost/house/dongSearch", {
+      .post("http://localhost/api/house/dongSearch", {
         city: payload[0],
         gugun: payload[1],
         dong: payload[2]
@@ -187,7 +187,7 @@ const actions = {
       return;
     }
     axios
-      .get("http://localhost/addr/getLatLng/" + payload)
+      .get("http://localhost/api/addr/getLatLng/" + payload)
       .then(({ data }) => {
         commit("setLatLng", data);
       })
@@ -197,7 +197,7 @@ const actions = {
   },
   getMaxArea({ commit }, payload) {
     axios
-      .get("http://localhost/addr/getMaxArea/" + payload)
+      .get("http://localhost/api/addr/getMaxArea/" + payload)
       .then(({ data }) => {
         commit("setMaxArea", data);
       })

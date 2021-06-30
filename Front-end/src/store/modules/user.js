@@ -87,7 +87,7 @@ const mutations = {
 const actions = {
   login({ commit }, payload) {
     axios
-      .post("http://localhost/member/login", {
+      .post("http://localhost/api/member/login", {
         userid: payload[0],
         userpwd: payload[1]
       })
@@ -100,7 +100,7 @@ const actions = {
   },
   registerMember({ commit }, payload) {
     axios
-      .post("http://localhost/member/register", {
+      .post("http://localhost/api/member/register", {
         userid: payload[0],
         userpwd: payload[1],
         username: payload[2],
@@ -116,7 +116,7 @@ const actions = {
   },
   modifyMember({ commit }, payload) {
     axios
-      .put("http://localhost/member/modify", {
+      .put("http://localhost/api/member/modify", {
         userid: payload[0],
         userpwd: payload[1],
         username: payload[2],
@@ -132,7 +132,7 @@ const actions = {
   },
   deleteMember({ commit }, payload) {
     axios
-      .post("http://localhost/member/delete", {
+      .post("http://localhost/api/member/delete", {
         userid: payload[0],
         userpwd: payload[1],
         username: payload[2],
@@ -148,7 +148,7 @@ const actions = {
   },
   getBookList({ commit }, payload) {
     axios
-      .get("http://localhost/member/booklist/" + payload)
+      .get("http://localhost/api/member/booklist/" + payload)
       .then(({ data }) => {
         let books = [];
         for (let i = 0; i < data.length; i++) {
@@ -169,7 +169,7 @@ const actions = {
   },
   addBook({ commit }, payload) {
     axios
-      .post("http://localhost/member/newBooking", {
+      .post("http://localhost/api/member/newBooking", {
         userid: payload[0],
         city: payload[1],
         gugun: payload[2],
@@ -185,7 +185,7 @@ const actions = {
   deleteBook({ commit }, payload) {
     commit("deleteBookList", payload);
     axios
-      .post("http://localhost/member/deleteBook", {
+      .post("http://localhost/api/member/deleteBook", {
         userid: payload[0],
         no: payload[1]
       })
