@@ -8,52 +8,54 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.happyhouse.model.Address;
-import com.ssafy.happyhouse.model.Board;
 import com.ssafy.happyhouse.model.Book;
 import com.ssafy.happyhouse.model.Member;
-import com.ssafy.happyhouse.model.mapper.HouseDao;
 import com.ssafy.happyhouse.model.mapper.MemberDao;
 
 @Service
 public class MemberServiceImpl implements MemberService {
+
 	
 	@Autowired
 	private SqlSession sqlSession;
 	
+
 	@Override
 	public void registerMember(Member member) {
 		sqlSession.getMapper(MemberDao.class).registerMember(member);
 	}
 
 	@Override
-	public Member login(Map<String, String> map) {
-		if(map.get("userid") == null || map.get("userpwd") == null)
+	public Member login(Member member) {
+		if(member.getUserid()== null || member.getUserpwd() == null)
 			return null;
-		return sqlSession.getMapper(MemberDao.class).login(map);
+		return sqlSession.getMapper(MemberDao.class).login(member);
+
 	}
 
 	@Override
-	public Member getMember(String userId) {
-		return sqlSession.getMapper(MemberDao.class).getMember(userId);
+	public void modifyMember(Member member) {
+		sqlSession.getMapper(MemberDao.class).modifyMember(member);
 	}
-
+	
 	@Override
-	public void modifyMember(Map<String, String> map) {
-		sqlSession.getMapper(MemberDao.class).modifyMember(map);
+	public void deleteBookList(String userid) {
+		// TODO Auto-generated method stub
+		sqlSession.getMapper(MemberDao.class).deleteBookList(userid);
 	}
 
 	@Override
 	public void deleteMember(String userId) {
 		sqlSession.getMapper(MemberDao.class).deleteMember(userId);
+
 	}
 
 	@Override
-	public void newBooking(Map<String, String> map) {
-//		MemberDaoImpl.getMemberDao().newBooking(userid, sido, gugun, dong);
-		sqlSession.getMapper(MemberDao.class).newBooking(map);
-//		return;
+	public void newBooking(Book book) {
+		// TODO Auto-generated method stub
+		sqlSession.getMapper(MemberDao.class).newBooking(book);
 	}
-//
+
 	@Override
 	public List<Address> bookList(String userId) {
 		// TODO Auto-generated method stub
@@ -65,12 +67,5 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		sqlSession.getMapper(MemberDao.class).deleteBook(book);
 	}
-
-	//	@Override
-//	public void deletebook(String userId, String no) {
-//		MemberDaoImpl.getMemberDao().deletebook(userId, no);
-//		
-//	}
-
 
 }

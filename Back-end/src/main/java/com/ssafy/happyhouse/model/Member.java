@@ -2,70 +2,68 @@ package com.ssafy.happyhouse.model;
 
 public class Member {
 
-	private String userId;
-	private String userName;
-	private String userPwd;
-	private String email;
-	private String address;
-	private String joindate;
-
-	public Member() {};
+//	userid varchar(16) PK 
+//	username varchar(20) 
+//	userpwd varchar(16) 
+//	email varchar(50) 
+//	address varchar(100) 
+//	joindate timestamp
 	
-	public Member(String userId, String userName, String userPwd, String email, String address, String joindate) {
+	String userid;
+	String username;
+	String userpwd;
+	String email;
+	String address;
+	String joindate;
+	public Member(String userid, String username, String userpwd, String email, String address, String joindate) {
 		super();
-		this.userId = userId;
-		this.userName = userName;
-		this.userPwd = userPwd;
+		this.userid = userid;
+		this.username = username;
+		this.userpwd = userpwd;
 		this.email = email;
 		this.address = address;
 		this.joindate = joindate;
 	}
-
-	public String getUserId() {
-		return userId;
+	public String getUserid() {
+		return userid;
 	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserid(String userid) {
+		this.userid = userid;
 	}
-
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-
-	public String getUserPwd() {
-		return userPwd;
+	public String getUserpwd() {
+		return userpwd;
 	}
-
-	public void setUserPwd(String userPwd) {
-		this.userPwd = userPwd;
+	public void setUserpwd(String userpwd) {
+		this.userpwd = userpwd;
 	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 	public String getAddress() {
 		return address;
 	}
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
 	public String getJoindate() {
 		return joindate;
 	}
-
 	public void setJoindate(String joindate) {
 		this.joindate = joindate;
 	}
+	@Override
+	public String toString() {
+		return "Member [userid=" + userid + ", username=" + username + ", userpwd=" + userpwd + ", email=" + email
+				+ ", address=" + address + ", joindate=" + joindate + "]";
+	}
+	
 }

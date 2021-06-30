@@ -3,34 +3,69 @@ package com.ssafy.happyhouse.model;
 public class House {
 
 	private int no;
+	private String city;
+	private String gugun;
 	private String dong;
-	private String AptName;
+	private String name;
 	private String code;
 	private String buildYear;
+	private String dealYear;
 	private String jibun;
 	private String lat;
 	private String lng;
 	private String img;
 	private String dealAmount;
 	private String area;
+	private String type;
+	private String floor;
 	
-	
-	public House(int no, String dong, String aptName, String code, String buildYear, String jibun, String lat,
-			String lng, String img, String dealAmount, String area) {
-		super();
-		this.no = no;
-		this.dong = dong;
-		AptName = aptName;
-		this.code = code;
-		this.buildYear = buildYear;
-		this.jibun = jibun;
-		this.lat = lat;
-		this.lng = lng;
-		this.img = img;
-		this.dealAmount = dealAmount;
-		this.area = area;
+	public String getFloor() {
+		return floor;
 	}
 
+	public void setFloor(String floor) {
+		this.floor = floor;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getGugun() {
+		return gugun;
+	}
+
+	public void setGugun(String gugun) {
+		this.gugun = gugun;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDealYear() {
+		return dealYear;
+	}
+
+	public void setDealYear(String dealYear) {
+		this.dealYear = dealYear;
+	}
 
 	public String getArea() {
 		return area;
@@ -67,13 +102,6 @@ public class House {
 		this.dong = dong;
 	}
 
-	public String getAptName() {
-		return AptName;
-	}
-
-	public void setAptName(String aptName) {
-		AptName = aptName;
-	}
 
 	public String getCode() {
 		return code;

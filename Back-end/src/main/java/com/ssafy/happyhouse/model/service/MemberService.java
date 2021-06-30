@@ -4,35 +4,34 @@ import java.util.List;
 import java.util.Map;
 
 import com.ssafy.happyhouse.model.Address;
-import com.ssafy.happyhouse.model.Board;
 import com.ssafy.happyhouse.model.Book;
 import com.ssafy.happyhouse.model.Member;
 
 public interface MemberService {
-
+	
 //	회원가입
 	void registerMember(Member memberDto);
 	
 //	로그인
-	Member login(Map<String, String> map);
+	Member login(Member memberDto);
 	
-//	회원정보 수정을 위한 회원의 모든 정보 얻기
-	Member getMember(String userId);
 	
 //	회원정보 수정
-	void modifyMember(Map<String, String> map);
+	void modifyMember(Member memberDto);
+	
+//	회원탈퇴전 관심지역 삭제
+	void deleteBookList(String userid);
 	
 //	회원탈퇴
 	void deleteMember(String userId);
 	
-//  관심지역 등록
-	void newBooking(Map<String, String> map);
+//	관심지역 등록
+	void newBooking(Book book);
 	
+//	관심지역 목록
 	List<Address> bookList(String userId);
-//
-//	void deleteBook(Map<String, String> map);
 
-//	void deleteBook(String userid, int no);
-
+//	관심지역 삭제
 	void deleteBook(Book book);
+
 }
